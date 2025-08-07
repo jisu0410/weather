@@ -1,0 +1,324 @@
+/* Animate.css CDN을 위한 임포트 */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css');
+
+/* 커스텀 배경 그라디언트 */
+body {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 메인 카드 스타일 */
+.container {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+  border: 3px solid #ddd;
+  position: relative; /* For the ::after pseudo-element */
+}
+
+.container:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2) !important;
+}
+
+h1 {
+  color: #2d3436;
+  margin-bottom: 10px;
+  font-size: 2.5em;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+p {
+  color: #636e72;
+  margin-bottom: 30px;
+  font-size: 1.2em;
+  line-height: 1.5;
+}
+
+/* 버튼 호버 효과 강화 */
+#drawButton {
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  padding: 18px 35px;
+  font-size: 1.3em;
+  font-weight: bold;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+#drawButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+#drawButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+}
+
+#drawButton:hover::before {
+  left: 100%;
+}
+
+#drawButton:active {
+  transform: translateY(-1px);
+}
+
+/* 결과 영역 스타일링 */
+#result {
+  display: none;
+  margin-top: 35px;
+  animation-duration: 0.8s;
+}
+
+#result h2 {
+  color: #2d3436;
+  margin-bottom: 25px;
+  font-size: 1.5em;
+}
+
+#numbers {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.number {
+  background: linear-gradient(45deg, #00b894, #00cec9);
+  color: white;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1em;
+  font-weight: bold;
+  animation: bounceIn 0.8s ease-out both;
+  box-shadow: 0 6px 20px rgba(0, 184, 148, 0.3);
+  border: 3px solid white;
+  transition: transform 0.3s ease;
+}
+
+.number:hover {
+  transform: scale(1.1);
+}
+
+.message {
+  margin-top: 20px;
+  padding: 15px;
+  background: linear-gradient(45deg, #fdcb6e, #e17055);
+  border-radius: 15px;
+  animation: fadeIn 1s ease-in 0.5s both;
+}
+
+.message p {
+  margin: 0;
+  color: white;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 모바일 반응형 */
+@media (max-width: 600px) {
+  .container {
+    padding: 25px;
+    margin: 10px;
+  }
+  
+  h1 {
+    font-size: 2em;
+  }
+  
+  p {
+    font-size: 1em;
+  }
+  
+  #drawButton {
+    padding: 15px 25px;
+    font-size: 1.1em;
+  }
+  
+  #numbers {
+    gap: 15px;
+  }
+  
+  .number {
+    width: 60px;
+    height: 60px;
+    font-size: 1em;
+  }
+}
+
+@media (max-width: 400px) {
+  #numbers {
+    gap: 10px;
+  }
+  
+  .number {
+    width: 50px;
+    height: 50px;
+    font-size: 0.9em;
+  }
+}
+
+/* SweetAlert2 커스터마이징 */
+.swal2-popup {
+  border-radius: 15px !important;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+}
+
+.swal2-title {
+  font-weight: 700 !important;
+  color: #2d3436 !important;
+}
+
+.swal2-html-container {
+  font-size: 1.1em !important;
+}
+
+.swal2-confirm {
+  border-radius: 25px !important;
+  font-weight: 600 !important;
+  padding: 10px 25px !important;
+}
+
+.swal2-cancel {
+  border-radius: 25px !important;
+  font-weight: 600 !important;
+  padding: 10px 25px !important;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .container {
+    margin: 20px;
+    max-width: none;
+  }
+
+  #drawButton {
+    font-size: 1rem;
+    padding: 15px 30px !important;
+  }
+
+  .display-5 { /* Assuming Bootstrap's display-5 class might be used elsewhere */
+    font-size: 2rem !important;
+  }
+
+  .number { /* Renamed from .badge for consistency if .badge was intended for .number */
+    width: 50px !important;
+    height: 50px !important;
+    font-size: 0.9rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    margin: 10px;
+  }
+
+  #drawButton {
+    font-size: 0.9rem;
+    padding: 12px 25px !important;
+  }
+
+  .number { /* Renamed from .badge for consistency */
+    width: 45px !important;
+    height: 45px !important;
+    font-size: 0.8rem !important;
+  }
+}
+
+/* 로딩 애니메이션 */
+.spinner-border-sm {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* 추가 시각적 효과 */
+.card-header {
+  background: linear-gradient(45deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1)) !important;
+}
+
+/* 키보드 단축키 힌트 */
+.container::after {
+  content: "💡 팁: 스페이스바를 눌러서도 뽑기가 가능합니다!";
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(0, 0, 0, 0.2);
+  padding: 5px 15px;
+  border-radius: 15px;
+  backdrop-filter: blur(5px);
+}
+
+@media (max-width: 768px) {
+  .container::after {
+    display: none;
+  }
+}
